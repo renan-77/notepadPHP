@@ -10,19 +10,33 @@ html, body{
 
 .layer {
     background-color: rgba(29, 29, 29, 0.3);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
+    margin: 0 auto;
  
 }
 
 #content{
+    display: inline-block;
     position: relative;
-    margin: 18vh auto;
+    margin: 3vh auto;
     width: 30%;
-    height: 50vh;
+    height: 93%;
+    max-width: 30%;
+    text-align: center;
+    background: rgba(29, 29, 29, 0.8);
+    border-radius: 6px;
+}
+
+.newNote{
+    display: inline-block;
+    position: relative;
+    margin: 20vh auto;
+    width: 30%;
+    height: 55vh;
     max-width: 30%;
     text-align: center;
     background: rgba(29, 29, 29, 0.8);
@@ -47,9 +61,25 @@ textarea{
     position: relative;
     margin: 30vh auto;
     width: 30%;
-    height: 16vh;
+    height: 25vh;
     max-width: 30%;
     text-align: center;
     background: rgba(29, 29, 29, 0.8);
     border-radius: 6px;  
+}
+
+.select{
+    margin: 15px auto;
+    display: block;
+    padding: 10px;
+}
+
+.button{
+    display: inline-block;
+    padding: 10px;
+    font-family: 'BebasNeueRegular';
+    font-weight: normal;
+    font-style: normal; 
+    font-size: 1.6vw;
+    margin: 5px auto;
 }

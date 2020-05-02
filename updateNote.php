@@ -10,45 +10,63 @@
     <script src='script.js'></script>
 </head>
 <body>
+    <?
+        session_start();
+    ?>
     <div class="layer">
+    <?php
+        function getDirs($path){
+            $allContents = scandir($path);
+            $contents = array_diff($allContents, array(".",".."));
+            $dirs = array();
+            foreach($contents as $content){
+                if(!is_file($content)){
+                    $dirs[] = $content;
+                }
+            }
+            return $dirs;
+        }
+        
+        $my_dir = "./txtFiles/";
+    ?>
         <div id="content">
             <h1>Notepad</h1>
+            <h2>Please select the note you want to update.</h2>
             <form method="post">
-                <input type="text" name="title" size="32" value="Enter Note Title" onfocus="clearField(this);"><br>
-                <input type="submit" name="submit" value="New Note">
+                <select name="toChange" class="select">
+                    <?php foreach(getDirs($my_dir) as $dir){echo '<option class="'.$my_dir.'" value="' . $dir . '" >'. $dir . '</option>';}  ?>
+                </select>
+                <input class="button" type="submit" name="enter" value="Enter">
             </form>
-            <?php
-                // if(isset($_POST['submit'])){
-                //     $title = $_POST['title'];
-                    
-                //     if($title == "Enter Note Title" || $title == ""){
-                //         echo "<html><h1 style='margin-top: 20%;text-align: center; color:RED;'>Sorry, you need to input both areas to create your file!<br>Redirecting you in 4 seconds</h1></html>";
-                //         header('Refresh: 4; index.php');
-                //     }else{
-                //         // $fp = fopen("./txtFiles/$title", 'a');
-                //         // fread($fp);
-                //         if(file_exists(`./txtFiles/$title`)){
-                //             echo "It exists";
-                //         }else{
-                //             echo "sorry dude, not working.";
-                //         }
-                //     }
-                // }
-
-                $dir = "./txtFiles/";
-
-                // Open a directory, and read its contents
-                if (is_dir($dir)){
-                if ($dh = opendir($dir)){
-                    while (($file = readdir($dh)) !== false){
-                    echo `  <select>
-                            <option value="$file">$file</option> 
-                            </select>
-                        `;
-                    //filename:" .$file ."<br>
-                    }
-                    closedir($dh);
+            
+            <form method="post">
+                <input class="button" type="submit" name="back" value="Back">
+            </form>
+            <?php   
+                if(isset($_POST['back'])){
+                    header('Location: index.php');
                 }
+
+                if(isset($_POST['enter'])){
+                    $lala = onEnter();
+                }
+
+                if(isset($_POST['update'])){
+                    echo $lala;
+                }
+
+                function onEnter(){
+                    $noteToChange = $_POST['toChange'];
+                    $noteTitle = str_replace(".txt", "", $noteToChange);
+                    
+                    echo '
+                            <form method="post">
+                                <input type="text" name="title" size="32" value="' . $noteTitle . '" onfocus="clearField(this);"><br>
+                                <textarea cols="46" rows="15" name="note" onfocus="clearField(this);">Write your note here.</textarea>
+                                <input class="button" type="submit" name="update" value="Update">
+                            </form>
+                        ';
+                    return $noteToChange;
                 }
             ?>
         </div>
