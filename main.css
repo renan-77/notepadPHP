@@ -1,0 +1,55 @@
+html, body{
+    background-image: url("img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #f1f1f1;
+    font-family: arial;
+    text-align: center;
+}
+
+.layer {
+    background-color: rgba(29, 29, 29, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+ 
+}
+
+#content{
+    position: relative;
+    margin: 18vh auto;
+    width: 30%;
+    height: 50vh;
+    max-width: 30%;
+    text-align: center;
+    background: rgba(29, 29, 29, 0.8);
+    border-radius: 6px;
+}
+
+h1{
+    padding: 10px 0px 10px 0px;
+    font-family: 'BebasNeueRegular';
+    font-weight: normal;
+    font-style: normal; 
+    font-size: 3vw;
+    margin: 0;
+}
+
+textarea{
+    border-radius: 6px;
+    resize: none;
+}
+
+.choose{
+    position: relative;
+    margin: 30vh auto;
+    width: 30%;
+    height: 16vh;
+    max-width: 30%;
+    text-align: center;
+    background: rgba(29, 29, 29, 0.8);
+    border-radius: 6px;  
+}
