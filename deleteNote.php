@@ -43,8 +43,8 @@
         }
     ?>
         <div id="content">
-            <h1>Notepad - UPDATE</h1>
-            <h2>Please select the note you want to UPDATE.</h2>
+            <h1>Notepad - DELETE</h1>
+            <h2>Please select the note you want to DELETE.</h2>
             <form method="post">
                 <select name="toChange" class="select">
                     <?php foreach(getDirs($my_dir) as $dir){echo '<option class="'.$my_dir.'" value="' . $dir . '" >'. $dir . '</option>';}  ?>
@@ -65,8 +65,9 @@
                         echo '
                         <form method="post">
                             <input type="text" name="title" size="32" value="' . $noteTitle . '" readonly><br>
-                            <textarea cols="46" rows="15" name="note">'.$fileContent.'</textarea>
-                            <input class="button" type="submit" name="update" value="Update">
+                            <textarea cols="46" rows="15" name="note" readonly>'.$fileContent.'</textarea>
+                            <p style="color: red">ARE YOU SURE YOU WANT TO DELETE THIS NOTE?</p>
+                            <input class="button" type="submit" name="update" value="DELETE">
                         </form>
                     ';
                     }
@@ -85,13 +86,9 @@
                     $title = $title . ".txt";
                     $file_pointer = "./txtFiles/$title";
 
-                    echo '<p style="color: green">Note Successfuly UPDATED</p>';
+                    echo '<p style="color: green">Note Successfuly DELETED</p>';
 
                     unlink($file_pointer);
-
-                    $fp = fopen($file_pointer , 'a');
-                    fwrite($fp, $content);
-                    fclose($fp);
                 }
             ?>
         </div>

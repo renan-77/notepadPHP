@@ -14,9 +14,9 @@
         <div class="choose">
             <h1>Notepad</h1>
             <form method="post">
-                <input class="button" type="submit" name="new" value="New Note">
-                <input class="button" type="submit" name="update" value="Update Note">
-                <input class="button" type="submit" name="delete" value="Delete Note">
+                <input class="buttonMainPage" type="submit" name="new" value="New Note">
+                <input class="buttonMainPage" type="submit" name="update" value="Update Note">
+                <input class="buttonMainPage" type="submit" name="delete" value="Delete Note">
             </form>
             <?php   
                 if(isset($_POST['new'])){

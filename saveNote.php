@@ -13,13 +13,18 @@
     <div class="layer">
         <div class="newNote">
             <div id="mainDiv">
-                <h1>Notepad</h1>
+                <h1>Notepad - CREATE</h1>
                 <form method="post">
                     <input type="text" name="title" size="32" value="Enter Note Title" onfocus="clearField(this);"><br>
                     <textarea cols="46" rows="15" name="note" onfocus="clearField(this);">Write your note here.</textarea>
+                    <input class="button" type="submit" name="back" value="Back">
                     <input class="button" type="submit" name="submit" value="New Note">
                 </form>
                 <?php
+                    if(isset($_POST['back'])){
+                        header('Location: index.php');
+                    }
+
                     if(isset($_POST['submit'])){
                         $title = $_POST['title'];
                         $note = $_POST['note'];
@@ -34,7 +39,7 @@
                                 $fp = fopen("./txtFiles/$title", 'a');
                                 fwrite($fp, $data);
                                 fclose($fp);
-                                echo 'Note Successfully added! Redirecting you to the main page.';
+                                echo '<p style="color: green">Note Successfully added! Redirecting you to the main page.</p>';
                                 header('Refresh: 2; index.php');
                             }
                         }

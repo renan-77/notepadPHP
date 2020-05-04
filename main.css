@@ -24,7 +24,7 @@ html, body{
     position: relative;
     margin: 3vh auto;
     width: 30%;
-    height: 93%;
+    height: 96%;
     max-width: 30%;
     text-align: center;
     background: rgba(29, 29, 29, 0.8);
@@ -36,7 +36,7 @@ html, body{
     position: relative;
     margin: 20vh auto;
     width: 30%;
-    height: 55vh;
+    height: 60vh;
     max-width: 30%;
     text-align: center;
     background: rgba(29, 29, 29, 0.8);
@@ -61,7 +61,7 @@ textarea{
     position: relative;
     margin: 30vh auto;
     width: 30%;
-    height: 25vh;
+    height: 30vh;
     max-width: 30%;
     text-align: center;
     background: rgba(29, 29, 29, 0.8);
@@ -75,6 +75,16 @@ textarea{
 }
 
 .button{
+    display: block;
+    padding: 10px;
+    font-family: 'BebasNeueRegular';
+    font-weight: normal;
+    font-style: normal; 
+    font-size: 1.6vw;
+    margin: 5px auto;
+}
+
+.buttonMainPage{
     display: inline-block;
     padding: 10px;
     font-family: 'BebasNeueRegular';
