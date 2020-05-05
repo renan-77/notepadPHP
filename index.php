@@ -19,6 +19,7 @@
                 <input class="buttonMainPage" type="submit" name="delete" value="Delete Note">
             </form>
             <?php   
+            //Checking which button was pressed to go to page.
                 if(isset($_POST['new'])){
                     header('Location: saveNote.php');
                 }if(isset($_POST['update'])){

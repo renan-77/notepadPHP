@@ -17,6 +17,7 @@
     <?php
         $my_dir = './txtFiles/';
 
+        //Getting files / directories function.
         function getDirs($path){
             $allContents = scandir($path);
             $contents = array_diff($allContents, array(".",".."));
@@ -29,6 +30,7 @@
             return $dirs;
         }
 
+        //Getting content of a file.
         function getContent($title){
             $fileName = $title . '.txt';
 
@@ -56,12 +58,14 @@
                 <input class="button" type="submit" name="back" value="Back">
             </form>
             <?php
+            //Checking for buttons to execute update.
                 if(isset($_POST['enter']) || isset($_POST['update'])){
                     if(!isset($_POST['update'])){
                         $_SESSION['noteToChange'] = $_POST['toChange'];
                         $noteTitle = str_replace(".txt", "", $_SESSION['noteToChange']);
                         $fileContent = getContent($noteTitle);
 
+                        //Displaying data to be changed formated to field.
                         echo '
                         <form method="post">
                             <input type="text" name="title" size="32" value="' . $noteTitle . '" readonly><br>
@@ -72,23 +76,28 @@
                     }
                     
 
+                    //executing update.
                     if(isset($_POST['update'])){
                        update($_POST['title'],$_POST['note']);
                     }
                 }
 
+                //Back button.
                 if(isset($_POST['back'])){
                     header('Location: index.php');
                 }
 
+                //Updating function.
                 function update($title,$content){
                     $title = $title . ".txt";
                     $file_pointer = "./txtFiles/$title";
 
                     echo '<p style="color: green">Note Successfuly UPDATED</p>';
 
+                    //Deleting file.
                     unlink($file_pointer);
 
+                    //Creating new based on field contents.
                     $fp = fopen($file_pointer , 'a');
                     fwrite($fp, $content);
                     fclose($fp);

@@ -11,12 +11,15 @@
 </head>
 <body>
     <?
+    //Starting session.
         session_start();
     ?>
     <div class="layer">
     <?php
+        //Variable to directory.
         $my_dir = './txtFiles/';
 
+        //Getting files / directories function.
         function getDirs($path){
             $allContents = scandir($path);
             $contents = array_diff($allContents, array(".",".."));
@@ -29,6 +32,7 @@
             return $dirs;
         }
 
+        //Getting content of file function.
         function getContent($title){
             $fileName = $title . '.txt';
 
@@ -47,7 +51,7 @@
             <h2>Please select the note you want to DELETE.</h2>
             <form method="post">
                 <select name="toChange" class="select">
-                    <?php foreach(getDirs($my_dir) as $dir){echo '<option class="'.$my_dir.'" value="' . $dir . '" >'. $dir . '</option>';}  ?>
+                    <?php foreach(getDirs($my_dir) as $dir){echo '<option class="'.$my_dir.'" value="' . $dir . '" >'. $dir . '</option>';} //Getting names of files and displaying onto a dropdown list ?>
                 </select>
                 <input class="button" type="submit" name="enter" value="Enter">
             </form>
@@ -56,33 +60,38 @@
                 <input class="button" type="submit" name="back" value="Back">
             </form>
             <?php
-                if(isset($_POST['enter']) || isset($_POST['update'])){
-                    if(!isset($_POST['update'])){
+            //Checking if the buttons are pressed to execute the delete.
+                if(isset($_POST['enter']) || isset($_POST['delete'])){
+                    if(!isset($_POST['delete'])){
                         $_SESSION['noteToChange'] = $_POST['toChange'];
                         $noteTitle = str_replace(".txt", "", $_SESSION['noteToChange']);
                         $fileContent = getContent($noteTitle);
 
+                        //Displaying title and content in fields.
                         echo '
                         <form method="post">
                             <input type="text" name="title" size="32" value="' . $noteTitle . '" readonly><br>
                             <textarea cols="46" rows="15" name="note" readonly>'.$fileContent.'</textarea>
                             <p style="color: red">ARE YOU SURE YOU WANT TO DELETE THIS NOTE?</p>
-                            <input class="button" type="submit" name="update" value="DELETE">
+                            <input class="button" type="submit" name="delete" value="DELETE">
                         </form>
                     ';
                     }
                     
 
-                    if(isset($_POST['update'])){
-                       update($_POST['title'],$_POST['note']);
+                    //Deleting.
+                    if(isset($_POST['delete'])){
+                       delete($_POST['title'],$_POST['note']);
                     }
                 }
 
+                //Checking back button.
                 if(isset($_POST['back'])){
                     header('Location: index.php');
                 }
 
-                function update($title,$content){
+                //Deleting function.
+                function delete($title,$content){
                     $title = $title . ".txt";
                     $file_pointer = "./txtFiles/$title";
 

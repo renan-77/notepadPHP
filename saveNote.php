@@ -21,18 +21,21 @@
                     <input class="button" type="submit" name="submit" value="New Note">
                 </form>
                 <?php
+                    //Back button.
                     if(isset($_POST['back'])){
                         header('Location: index.php');
                     }
 
+                    //Checking if submit is pressed to create new file.
                     if(isset($_POST['submit'])){
                         $title = $_POST['title'];
                         $note = $_POST['note'];
                         
+                        //Checking fields for valid file input.
                         if($title == "Enter Note Title" || $note == "Write your note here."){
                             echo "<html><h1 style='margin-top: 20%;text-align: center; color:RED;'>Sorry, you need to input both areas to create your file!<br>Redirecting you in 4 seconds</h1></html>";
                             header('Refresh: 4; index.php');
-                        }else{
+                        }else{//Creating the new file.
                             if(isset($note)){
                                 $data = $note;
                                 $title = $title . '.txt'; 
